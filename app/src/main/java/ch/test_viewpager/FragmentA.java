@@ -48,7 +48,7 @@ import java.util.Vector;
 public class FragmentA extends Fragment implements View.OnClickListener, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener{
 
 
-
+    //Test Comments
     private Button btn[] = new Button[2];
     private ProgressBar pb_location;
     private TextView tv_current_location, tv_stn_addr;
