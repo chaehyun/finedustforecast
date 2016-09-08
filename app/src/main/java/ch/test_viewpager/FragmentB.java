@@ -1,7 +1,6 @@
 package ch.test_viewpager;
 
 
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -17,6 +16,7 @@ import android.widget.Toast;
  * A simple {@link Fragment} subclass.
  */
 public class FragmentB extends Fragment implements View.OnClickListener {
+
 
     Button btn_pm10, btn_pm25, btn_o3;
 
