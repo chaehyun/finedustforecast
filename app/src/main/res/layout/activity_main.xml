@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="ch.test_viewpager.MainActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:orientation="horizontal"
+        android:id="@+id/layout_menubtns">
+        <Button
+            android:id="@+id/btn_a"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:textColor="@drawable/clickable_btn"
+            android:textColorHighlight="@drawable/clickable_btn"
+            android:text="대기상태"
+            style="@style/Theme.AppCompat.Light"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="10dp"
+            android:layout_gravity="center"
+            android:background="@drawable/line"
+            android:id="@+id/imageView" />
+
+        <Button
+            android:id="@+id/btn_b"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:textColor="@drawable/clickable_btn"
+            android:textColorHighlight="@drawable/clickable_btn"
+            android:text="예보정보"
+            style="@style/Theme.AppCompat.Light.DarkActionBar"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="10dp"
+            android:layout_gravity="center"
+            android:background="@drawable/line"
+            android:id="@+id/imageView2" />
+
+        <Button
+            android:id="@+id/btn_c"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:textColor="@drawable/clickable_btn"
+            android:textColorHighlight="@drawable/clickable_btn"
+            android:text="알람"
+            style="@style/Theme.AppCompat.Light.DarkActionBar"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="10dp"
+            android:layout_gravity="center"
+            android:background="@drawable/line"
+            android:id="@+id/imageView3" />
+
+        <Button
+            android:id="@+id/btn_d"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:textColor="@drawable/clickable_btn"
+            android:textColorHighlight="@drawable/clickable_btn"
+            android:text="설정"
+            style="@style/Theme.AppCompat.Light.DarkActionBar"/>
+
+    </LinearLayout>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/layout_menubtns" />
+
+
+</RelativeLayout>

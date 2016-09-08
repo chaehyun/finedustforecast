@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">미세먼지</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="pageA">미세먼지의 상태를 보여주는 화면입니다.</string>
+    <string name="pageB">예보정보 화면입니다.</string>
+    <string name="pageC">알람설정 화면입니다.</string>
+    <string name="pageD">설정화면 입니다.</string>
+    <string name="content">Content</string>
+    <string name="microgram">(㎍/㎥)</string>
+    <string name="microgram24">(㎍/㎥) [24h]</string>
+    <string name="date">Date</string>
+</resources>
