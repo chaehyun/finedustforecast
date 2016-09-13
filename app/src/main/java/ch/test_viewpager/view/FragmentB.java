@@ -1,6 +1,7 @@
-package ch.test_viewpager.view;
+package ch.test_viewpager;
 
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -10,8 +11,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
-
-import ch.test_viewpager.R;
 
 
 /**
