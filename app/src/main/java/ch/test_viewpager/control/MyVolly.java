@@ -1,4 +1,4 @@
-package ch.test_viewpager.control.network;
+package ch.test_viewpager.control;
 
 /**
  * Created by ChaeHyun on 2016. 9. 13..
