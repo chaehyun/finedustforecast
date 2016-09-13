@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="#aa64b5f6"
-    tools:context="ch.test_viewpager.FragmentA"
+    tools:context=".view.FragmentA"
     android:weightSum="1">
 
     <!-- TODO: Update blank fragment layout -->

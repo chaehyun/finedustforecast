@@ -1,4 +1,4 @@
-package ch.test_viewpager;
+package ch.test_viewpager.model.data;
 
 /**
  * Created by CH on 2016. 7. 17..

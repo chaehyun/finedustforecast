@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#aaf06292"
-    tools:context="ch.test_viewpager.FragmentC">
+    tools:context=".view.FragmentC">
 
     <!-- TODO: Update blank fragment layout -->
     <TextView
