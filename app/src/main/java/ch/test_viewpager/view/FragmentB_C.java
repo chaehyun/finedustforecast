@@ -168,7 +168,7 @@ public class FragmentB_C extends Fragment {
                             if(!itemJson.isNull("imageUrl"+j))
                                 imgURL[j-1] = itemJson.getString("imageUrl"+j);
 
-                            System.out.println("ImageURL["+ j +"] : " + imgURL[j-1]);
+                            //System.out.println("ImageURL["+ j +"] : " + imgURL[j-1]);
                         }
 
                         //Bitmap 받아오기
@@ -280,15 +280,15 @@ public class FragmentB_C extends Fragment {
                 mCalendar.add(Calendar.DATE, -1);
                 date = DateFormat.format(mCalendar.getTime());
 
-                System.out.println("Hour : " + mCalendar.get(Calendar.HOUR_OF_DAY) +" , " + hour);
-                System.out.println("Date(Yesterday) : " + mCalendar.get(Calendar.DATE));
-                System.out.println("DateFormat(전날) : " + date);
+                //System.out.println("Hour : " + mCalendar.get(Calendar.HOUR_OF_DAY) +" , " + hour);
+                //System.out.println("Date(Yesterday) : " + mCalendar.get(Calendar.DATE));
+                //System.out.println("DateFormat(전날) : " + date);
             }
             else {
                 date = DateFormat.format(mCalendar.getTime());
 
-                System.out.println("Hour : " + mCalendar.get(Calendar.HOUR_OF_DAY) +" , " + hour);
-                System.out.println("DateFormat(오늘) : " + date);
+                //System.out.println("Hour : " + mCalendar.get(Calendar.HOUR_OF_DAY) +" , " + hour);
+                //System.out.println("DateFormat(오늘) : " + date);
             }
 
 
@@ -309,7 +309,7 @@ public class FragmentB_C extends Fragment {
             String urlName = url.getMainURL() + url.getServiceName() + url.getOperationName() + url.getSearchDate() + date
                     + url.getSearchCondition() + url.getInformCode() + url.getApiKey() + url.getReturnType();
 
-            Log.i("CHEKC_URL", urlName);
+            Log.i("CHEKC_URL(예보)", urlName);
 
             return urlName;
         }

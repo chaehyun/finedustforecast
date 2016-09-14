@@ -18,6 +18,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -44,6 +45,7 @@ import ch.test_viewpager.model.data.GPSData;
 import ch.test_viewpager.model.data.GetMsrstnAcctoRltmMesureDnsty;
 import ch.test_viewpager.model.data.GetNearByMsrstnList;
 import ch.test_viewpager.model.data.URLName;
+import ch.test_viewpager.model.pref.AppSharedPreferences;
 
 
 /**
@@ -51,13 +53,13 @@ import ch.test_viewpager.model.data.URLName;
  */
 public class FragmentA extends Fragment implements View.OnClickListener, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener{
 
+    AppSharedPreferences pref;
+    String currentMode = null;
 
-    //Test Commentss
     private Button btn[] = new Button[2];
     private ProgressBar pb_location;
     private TextView tv_current_location, tv_stn_addr;
-    private TextView tv_pm10_val, tv_pm10_val24,
-            tv_pm25_val, tv_pm25_val24, tv_data;
+    private TextView mTextView;
 
     private TextView[] tv_data_hour = new TextView[3];
     private TextView[] tv_data_24hour = new TextView[3];
@@ -66,7 +68,10 @@ public class FragmentA extends Fragment implements View.OnClickListener, GoogleA
     private TextView[] tv_degree = new TextView[4];
     private ImageView[] imageView_state = new ImageView[7];
 
-    public GPSData CoordData;
+    private Button[] saved_location = new Button[3];
+    private boolean[] empty = new boolean[3];
+
+    public GPSData CoordData = null;
 
     Location mLastLocation;
     GoogleApiClient mGoogleApiClient;
@@ -86,18 +91,58 @@ public class FragmentA extends Fragment implements View.OnClickListener, GoogleA
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_a, container, false);
 
+        pref = new AppSharedPreferences(getActivity());
+
+        empty[0] = false; empty[1] = false; empty[2] = false;
+
+        //SharedPreferences sp = getActivity().getPreferences(Context.MODE_PRIVATE);
+        //boolean hasVisited  = sp.getBoolean("hasVisited", true);
+        boolean hasVisited = pref.getValue("hasVisited", false);
+        if(!hasVisited)
+        {
+            //SharedPreferences.Editor editor = sp.edit();
+            //editor.putBoolean("hasVisited", false).apply();
+            pref.put("hasVisited", true);
+            pref.put("CurrentMode", "CURR");
+            Toast.makeText(getActivity(), "첫 번째 방문입니다!", Toast.LENGTH_SHORT).show();
+        }
+
+        saved_location[0] = (Button) v.findViewById(R.id.btn_saved_location1);
+        saved_location[1] = (Button) v.findViewById(R.id.btn_saved_location2);
+        saved_location[2] = (Button) v.findViewById(R.id.btn_saved_location3);
+
+        for(int i=0; i<3; i++)
+            saved_location[i].setText("-");
+
+        if(!pref.getValue("LocationSave_One_Umd","").equals("")) {
+            saved_location[0].setText(pref.getValue("LocationSave_One_Umd",""));
+        }
+        if(!pref.getValue("LocationSave_Two_Umd","").equals("")) {
+            saved_location[1].setText(pref.getValue("LocationSave_Two_Umd",""));
+        }
+        if(!pref.getValue("LocationSave_Three_Umd","").equals("")) {
+            saved_location[2].setText(pref.getValue("LocationSave_Three_Umd",""));
+        }
+
         //Find View
         pb_location = (ProgressBar) v.findViewById(R.id.progress_location);
         tv_current_location = (TextView) v.findViewById(R.id.tv_current_location);
         tv_stn_addr = (TextView)  v.findViewById(R.id.tv_stn_addr);
+        mTextView = (TextView) v.findViewById(R.id.text_current_location);
 
         btn[0] = (Button) v.findViewById(R.id.btn_get);
         btn[0].setOnClickListener(this);
+
+        btn[1] = (Button) v.findViewById(R.id.btn_curr);
+        btn[1].setOnClickListener(this);
+
+        for(int i=0; i < 3; i++)
+        {
+            saved_location[i].setOnClickListener(this);
+        }
         
 
         pb_location.setVisibility(View.INVISIBLE);
-
-
         getCoordDatafromGPS();
 
         // Inflate the layout for this fragment
@@ -106,15 +151,74 @@ public class FragmentA extends Fragment implements View.OnClickListener, GoogleA
 
     void getCoordDatafromGPS(){
 
-        CoordData = new GPSData();
+        //pref에서 CurrentMode 확인
+        //현재위치일때 "CURR" / 아닐때 "ONE" / "TWO" / "THREE" 반환
+        currentMode = pref.getValue("CurrentMode", "");
+        Log.i("CurrentMode" , currentMode);
 
-        mGoogleApiClient = new GoogleApiClient.Builder(getActivity())
-                .addConnectionCallbacks(this)
-                .addOnConnectionFailedListener(this)
-                .addApi(LocationServices.API)
-                .build();
-        //Lauch
-        mGoogleApiClient.connect();
+
+        if(currentMode.equals("ONE"))
+        {
+            CoordData = new GPSData();
+
+            String Addr = pref.getValue("LocationSave_One_Addr", "");
+            String tmX = pref.getValue("LocationSave_One_TmX", "");
+            String tmY = pref.getValue("LocationSave_One_TmY", "");
+
+            CoordData.setTm_x(Double.parseDouble(tmX));
+            CoordData.setTm_y(Double.parseDouble(tmY));
+
+            mTextView.setText("선택위치 : ");
+            tv_current_location.setText(Addr);
+
+            new GetNearByMsrstnListTask().execute();
+        }
+        else if(currentMode.equals("TWO"))
+        {
+            CoordData = new GPSData();
+
+            String Addr = pref.getValue("LocationSave_Two_Addr", "");
+            String tmX = pref.getValue("LocationSave_Two_TmX", "");
+            String tmY = pref.getValue("LocationSave_Two_TmY", "");
+
+            CoordData.setTm_x(Double.parseDouble(tmX));
+            CoordData.setTm_y(Double.parseDouble(tmY));
+
+            mTextView.setText("선택위치 : ");
+            tv_current_location.setText(Addr);
+
+            new GetNearByMsrstnListTask().execute();
+        }
+        else if(currentMode.equals("THREE")) {
+            CoordData = new GPSData();
+
+            String Addr = pref.getValue("LocationSave_Three_Addr", "");
+            String tmX = pref.getValue("LocationSave_Three_TmX", "");
+            String tmY = pref.getValue("LocationSave_Three_TmY", "");
+
+            CoordData.setTm_x(Double.parseDouble(tmX));
+            CoordData.setTm_y(Double.parseDouble(tmY));
+
+            mTextView.setText("선택위치 : ");
+            tv_current_location.setText(Addr);
+
+            new GetNearByMsrstnListTask().execute();
+        }
+        else    // currentMode가 CURR인 경우 (default)
+        {
+            CoordData = new GPSData();
+            mTextView.setText("현재위치 : ");
+
+            mGoogleApiClient = new GoogleApiClient.Builder(getActivity())
+                    .addConnectionCallbacks(this)
+                    .addOnConnectionFailedListener(this)
+                    .addApi(LocationServices.API)
+                    .build();
+            //Lauch
+            mGoogleApiClient.connect();
+        }
+
+
     }
 
     @Override
@@ -122,10 +226,64 @@ public class FragmentA extends Fragment implements View.OnClickListener, GoogleA
         switch(view.getId())
         {
             case R.id.btn_get:
+                tv_current_location.setText("Loading..");
+                tv_stn_addr.setText("Loading..");
+
                 getCoordDatafromGPS();
+                break;
+            case R.id.btn_curr:
+                pref.put("CurrentMode", "CURR");
 
                 tv_current_location.setText("Loading..");
                 tv_stn_addr.setText("Loading..");
+                getCoordDatafromGPS();
+
+                break;
+
+            case R.id.btn_saved_location1:
+                Button btn = (Button) getActivity().findViewById(R.id.btn_saved_location1);
+                String get = btn.getText().toString();
+                if(!get.equals("-"))
+                {
+                    pref.put("CurrentMode", "ONE");
+                    tv_current_location.setText("Loading..");
+                    tv_stn_addr.setText("Loading..");
+                    getCoordDatafromGPS();
+                }
+                else {
+                    Toast.makeText(getActivity(), "등록된 주소지가 없습니다.", Toast.LENGTH_SHORT).show();
+                }
+
+                break;
+
+            case R.id.btn_saved_location2:
+                btn = (Button) getActivity().findViewById(R.id.btn_saved_location2);
+                get = btn.getText().toString();
+                if(!get.equals("-"))
+                {
+                    pref.put("CurrentMode", "TWO");
+                    tv_current_location.setText("Loading..");
+                    tv_stn_addr.setText("Loading..");
+                    getCoordDatafromGPS();
+                }
+                else {
+                    Toast.makeText(getActivity(), "등록된 주소지가 없습니다.", Toast.LENGTH_SHORT).show();
+                }
+                break;
+
+            case R.id.btn_saved_location3:
+                btn = (Button) getActivity().findViewById(R.id.btn_saved_location3);
+                get = btn.getText().toString();
+                if(!get.equals("-"))
+                {
+                    pref.put("CurrentMode", "THREE");
+                    tv_current_location.setText("Loading..");
+                    tv_stn_addr.setText("Loading..");
+                    getCoordDatafromGPS();
+                }
+                else {
+                    Toast.makeText(getActivity(), "등록된 주소지가 없습니다.", Toast.LENGTH_SHORT).show();
+                }
                 break;
         }
     }
@@ -167,7 +325,7 @@ public class FragmentA extends Fragment implements View.OnClickListener, GoogleA
             new DaumCoordTransApiTask().execute();
         }
         else {
-            tv_current_location.setText("Fail to find your current location.");
+            tv_current_location.setText("Fail");
         }
 
         pb_location.setVisibility(View.INVISIBLE);
@@ -283,13 +441,11 @@ public class FragmentA extends Fragment implements View.OnClickListener, GoogleA
         protected String doInBackground(String... strings) {
 
             try {
-                //StringBuilder urlBuilder = new StringBuilder(urlName);
 
                 URL url = new URL(urlName);
                 HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
-                //urlConnection.setRequestMethod("GET");
-                //urlConnection.setRequestProperty("Content-type", "application/json");
-                Log.i("Response code","(URL CONNECTION) " + urlConnection.getResponseCode());
+
+
 
 
                 BufferedReader br;
@@ -355,10 +511,6 @@ public class FragmentA extends Fragment implements View.OnClickListener, GoogleA
                     tv_stn_addr.setText(nearStn.get(0).getStationName() + " , "+ nearStn.get(0).getTm() +"km" +"\n"
                     + nearStn.get(0).getAddr());
 
-                    //for(GetNearByMsrstnList nearStn : getNearByMsrstnListVector) {
-                    //    tv_stn_addr.append( " <" + nearStn.getStationName() + " , " + nearStn.getAddr() + " ,tm : " + nearStn.getTm() + ">\n\n" );
-                    //}
-
                     //Run : To get info about 대기상태 from a specific station
                     new GetMsrstnAcctoRltmMesureDnstyTask().execute();
 
@@ -384,7 +536,8 @@ public class FragmentA extends Fragment implements View.OnClickListener, GoogleA
 
             String url = urlName.getMainURL() + urlName.getServiceName() + urlName.getOperationName() + urlName.getX_val() + CoordData.getTm_x() + urlName.getY_val() + CoordData.getTm_y() + urlName.getPageNo() + urlName.getNumOfRows() + urlName.getApiKey() + urlName.getReturnType();
 
-            System.out.println("Check_URL : " + url);
+            System.out.println("Check_URL(A) : " + url);
+            System.out.println("MakeURL->Coord : (" + CoordData.getTm_x() + " , " + CoordData.getTm_y() + ")");
 
             return url;
         }
@@ -505,7 +658,7 @@ public class FragmentA extends Fragment implements View.OnClickListener, GoogleA
                 imageSetting(imageView_state[4], tv_degree[1], 4 , data.getNo2Value());
                 imageSetting(imageView_state[5], tv_degree[2], 5 , data.getCoValue());
                 imageSetting(imageView_state[6], tv_degree[3], 6 , data.getSo2Value());
-
+/*
                 //출력확인부분
                 if(data != null) {
                     Log.i("DATA","dataTime : " + data.getDataTime());
@@ -518,7 +671,10 @@ public class FragmentA extends Fragment implements View.OnClickListener, GoogleA
                     Log.i("DATA","Pm10Val24 : " + data.getPm10Value24());
                     Log.i("DATA","Pm25Val : " + data.getPm25Value());
                     Log.i("DATA","Pm25Val24 : " + data.getPm25Value24());
+
+
                 }
+*/
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -577,22 +733,22 @@ public class FragmentA extends Fragment implements View.OnClickListener, GoogleA
                         img = (ImageView) getView().findViewById(R.id.image_state_khai);
                         tv = (TextView) getView().findViewById(R.id.tv_state_1);
                         if(value >= 0 && value <= 50) {     //좋음으로 세팅
-                            resource = ResourcesCompat.getDrawable(getResources(), R.drawable.alert_best, null);
+                            resource = ResourcesCompat.getDrawable(getResources(), R.drawable.statebutton_best, null);
                             tv_data_hour[0].setTextColor(Color.BLUE);
                             tv.setText("오늘 통합대기환경지수는 좋음입니다.");
                         }
                         else if(value <= 100) {     //보통으로 세팅
-                            resource = ResourcesCompat.getDrawable(getResources(), R.drawable.alert_good, null);
+                            resource = ResourcesCompat.getDrawable(getResources(), R.drawable.statebutton_good, null);
                             tv_data_hour[0].setTextColor(Color.GREEN);
                             tv.setText("오늘 통합대기환경지수는 보통입니다.");
                         }
                         else if(value <= 250) {
-                            resource = ResourcesCompat.getDrawable(getResources(), R.drawable.alert_bad, null);
+                            resource = ResourcesCompat.getDrawable(getResources(), R.drawable.statebutton_bad, null);
                             tv_data_hour[0].setTextColor(Color.YELLOW);
                             tv.setText("오늘 통합대기환경지수는 나쁨입니다.");
                         }
                         else {
-                            resource = ResourcesCompat.getDrawable(getResources(), R.drawable.alert_verybad, null);
+                            resource = ResourcesCompat.getDrawable(getResources(), R.drawable.statebutton_verybad, null);
                             tv_data_hour[0].setTextColor(Color.RED);
                             tv.setText("오늘 통합대기환경지수는 심각입니다.");
                         }

@@ -172,7 +172,7 @@ public class FragmentB_A extends Fragment {
                     data.setInformData(itemJson.getString("informData"));
                     data.setInformGrade(itemJson.getString("informGrade"));
                     data.setInformOverall(itemJson.getString("informOverall"));
-                    System.out.println("i : "+i);
+                    //System.out.println("i : "+i);
                     if(i==1)
                     {
                         for(int j = 1,a = 0; j<=3; j++,a++)
@@ -189,7 +189,7 @@ public class FragmentB_A extends Fragment {
                             public void run() {
                                 InputStream is = null;
                                 //JSONObject로 받을 이미지가 총 6개
-                                System.out.println("th_getBitmap is running ");
+                                //System.out.println("th_getBitmap is running ");
                                 for(int idx=0; idx < 3; idx++) {
                                     try {
                                         URL url = new URL(imgURL[idx]);
@@ -203,7 +203,7 @@ public class FragmentB_A extends Fragment {
                                         e.printStackTrace();
                                     }
                                 }
-                                System.out.println("th_getBitmap is finishing");
+                                //System.out.println("th_getBitmap is finishing");
                             }
                         });
                         th_getBitmap.start();
@@ -214,7 +214,7 @@ public class FragmentB_A extends Fragment {
                         Thread th_setImageView = new Thread(new Runnable() {
                             @Override
                             public void run() {
-                                System.out.println("th_setImage is running");
+                                //System.out.println("th_setImage is running");
                                 while(!imageStop) {
                                     try {
                                         //System.out.println("* A **Thread _ image Load , " + imageStop);
@@ -224,7 +224,7 @@ public class FragmentB_A extends Fragment {
                                         e.printStackTrace();
                                     }
                                 }
-                                System.out.println("th_setImage is finishing");
+                                //System.out.println("th_setImage is finishing");
                             }
                         });
                         th_setImageView.start();
@@ -293,15 +293,15 @@ public class FragmentB_A extends Fragment {
                 mCalendar.add(Calendar.DATE, -1);
                 date = DateFormat.format(mCalendar.getTime());
 
-                System.out.println("Hour : " + mCalendar.get(Calendar.HOUR_OF_DAY) +" , " + hour);
-                System.out.println("Date(Yesterday) : " + mCalendar.get(Calendar.DATE));
-                System.out.println("DateFormat(전날) : " + date);
+                //System.out.println("Hour : " + mCalendar.get(Calendar.HOUR_OF_DAY) +" , " + hour);
+                //System.out.println("Date(Yesterday) : " + mCalendar.get(Calendar.DATE));
+                //System.out.println("DateFormat(전날) : " + date);
             }
             else {
                 date = DateFormat.format(mCalendar.getTime());
 
-                System.out.println("Hour : " + mCalendar.get(Calendar.HOUR_OF_DAY) +" , " + hour);
-                System.out.println("DateFormat(오늘) : " + date);
+                //System.out.println("Hour : " + mCalendar.get(Calendar.HOUR_OF_DAY) +" , " + hour);
+                //System.out.println("DateFormat(오늘) : " + date);
             }
 
             URLName url = new URLName();
@@ -318,7 +318,7 @@ public class FragmentB_A extends Fragment {
             String urlName = url.getMainURL() + url.getServiceName() + url.getOperationName() + url.getSearchDate() + date
                     + url.getSearchCondition() + url.getInformCode() + url.getApiKey() + url.getReturnType();
 
-            Log.i("CHEKC_URL", urlName);
+            Log.i("CHEKC_URL(예보)", urlName);
 
             return urlName;
         }

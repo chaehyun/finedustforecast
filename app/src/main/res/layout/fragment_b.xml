@@ -21,6 +21,9 @@
             android:layout_weight="1"
             android:text="미세먼지"
             android:id="@+id/btn_pm10"
+            android:background="@android:color/transparent"
+            android:textColor="@drawable/clickable_btn"
+            android:textColorHighlight="@drawable/clickable_btn"
             android:layout_alignParentBottom="true"
             android:layout_toStartOf="@+id/btn_pm25" />
 
@@ -31,6 +34,9 @@
             android:layout_weight="1"
             android:text="초미세먼지"
             android:id="@+id/btn_pm25"
+            android:background="@android:color/transparent"
+            android:textColor="@drawable/clickable_btn"
+            android:textColorHighlight="@drawable/clickable_btn"
             android:layout_alignParentBottom="true"
              />
 
@@ -41,6 +47,9 @@
             android:layout_weight="1"
             android:text="오존"
             android:id="@+id/btn_o3"
+            android:background="@android:color/transparent"
+            android:textColor="@drawable/clickable_btn"
+            android:textColorHighlight="@drawable/clickable_btn"
             android:layout_alignParentBottom="true"
             android:layout_toEndOf="@+id/btn_pm25" />
     </LinearLayout>

@@ -1,5 +1,6 @@
 package ch.test_viewpager.model.data;
 
+
 /**
  * Created by CH on 2016-07-16.
  */

@@ -1,4 +1,4 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -6,20 +6,134 @@
     tools:context=".view.FragmentD">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAlignment="center"
-        android:text="@string/pageD"
-        android:layout_gravity="center" />
 
-    <Button
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="To the 1st page"
-        android:id="@+id/btn_home"
-        android:layout_marginTop="50dp"
-        android:onClick="onClick_Home"
-        android:layout_gravity="center" />
 
-</FrameLayout>
+        android:background="@drawable/rounded"
+        android:layout_alignParentStart="true"
+        android:padding="10dp"
+        android:layout_margin="10dp">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="주소검색"
+                android:id="@+id/textView29"
+                android:textSize="25dp"
+                android:layout_margin="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_weight="0.8" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/plus_32"
+                android:id="@+id/img_button_add"
+                android:layout_weight="0.15"
+                android:layout_below="@+id/listView_d"
+                android:layout_alignParentStart="true"
+                android:layout_gravity="right" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/linearLayout5"
+
+            android:baselineAligned="false"
+            android:padding="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_below="@+id/textView29"
+            android:layout_alignParentStart="true">
+
+            <EditText
+                android:layout_width="220dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/editText1"
+                android:layout_weight="0.5"
+                android:focusable="false"
+                android:textColor="#c8ffffff" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/minus_32"
+                android:id="@+id/img_button_minus1"
+                android:layout_weight="0.3" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/linearLayout7"
+            android:baselineAligned="false"
+            android:padding="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_below="@+id/textView29"
+            android:layout_alignParentStart="true" >
+
+            <EditText
+                android:layout_width="220dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/editText2"
+                android:layout_weight="0.5"
+                android:focusable="false"
+                android:textColor="#c8ffffff" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/minus_32"
+                android:id="@+id/img_button_minus2"
+                android:layout_weight="0.3" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/linearLayout8"
+            android:baselineAligned="false"
+            android:padding="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_below="@+id/textView29"
+            android:layout_alignParentStart="true" >
+
+            <EditText
+                android:layout_width="220dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/editText3"
+                android:layout_weight="0.5"
+                android:focusable="false"
+                android:textColor="#c8ffffff" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/minus_32"
+                android:id="@+id/img_button_minus3"
+                android:layout_weight="0.3" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>
