@@ -43,6 +43,11 @@ public class GPSData {
         this.wgs_y = wgs_y;
     }
 
-    public GPSData(){}
+    public GPSData(){
+        tm_x = 0;
+        tm_y = 0;
+        wgs_x = 0;
+        wgs_y = 0;
+    }
 
 }

@@ -1,4 +1,4 @@
-package ch.test_viewpager;
+package ch.test_viewpager.view;
 
 
 import android.content.DialogInterface;
@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
 
+import ch.test_viewpager.R;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -47,6 +48,7 @@ public class FragmentB extends Fragment implements View.OnClickListener {
         btn_pm25.setOnClickListener(this);
         btn_o3.setOnClickListener(this);
 
+        btn_pm10.setSelected(true);
         //childFragment
         childFragmentManager = getFragmentManager();
         childFragTrans = childFragmentManager.beginTransaction();
@@ -76,6 +78,9 @@ public class FragmentB extends Fragment implements View.OnClickListener {
 
                 childFragTrans.replace(R.id.fragment_placeholder, FragB_A);
                 childFragTrans.commit();
+                btn_pm10.setSelected(true);
+                btn_pm25.setSelected(false);
+                btn_o3.setSelected(false);
 
                 break;
             case R.id.btn_pm25:
@@ -83,12 +88,20 @@ public class FragmentB extends Fragment implements View.OnClickListener {
 
                 childFragTrans.replace(R.id.fragment_placeholder, FragB_B);
                 childFragTrans.commit();
+                btn_pm10.setSelected(false);
+                btn_pm25.setSelected(true);
+                btn_o3.setSelected(false);
+
                 break;
             case R.id.btn_o3:
                 Toast.makeText(getActivity(), "오존상태 예보", Toast.LENGTH_SHORT).show();
 
                 childFragTrans.replace(R.id.fragment_placeholder, FragB_C);
                 childFragTrans.commit();
+                btn_pm10.setSelected(false);
+                btn_pm25.setSelected(false);
+                btn_o3.setSelected(true);
+
                 break;
 
         }

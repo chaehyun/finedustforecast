@@ -50,14 +50,17 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="현재 위치 : "
-                    android:id="@+id/textView2"
+                    android:id="@+id/text_current_location"
                     android:layout_marginLeft="5dp" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Loading.."
-                    android:id="@+id/tv_current_location" />
+                    android:ellipsize="end"
+                    android:singleLine="true"
+                    android:id="@+id/tv_current_location"
+                    android:layout_weight="0.7" />
 
                 <ProgressBar
                     style="?android:attr/progressBarStyleSmall"
@@ -69,16 +72,6 @@
                     android:layout_marginLeft="50dp"
                     android:layout_gravity="right"
                     android:indeterminate="false" />
-
-                <Button
-                    style="?android:attr/buttonStyleSmall"
-                    android:layout_width="wrap_content"
-                    android:layout_height="25dp"
-
-                    android:text="GET"
-                    android:id="@+id/btn_get"
-                    android:layout_gravity="right"
-                    android:layout_marginRight="10dp" />
 
             </LinearLayout>
 
@@ -92,14 +85,76 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="측정소 위치 : "
+                    android:text="측정소 : "
                     android:id="@+id/textView3" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Loading.."
-                    android:id="@+id/tv_stn_addr" />
+                    android:id="@+id/tv_stn_addr"
+                    android:layout_weight="0.7" />
+
+            </LinearLayout>
+
+            <Button
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+
+                android:text="Refresh"
+                android:id="@+id/btn_get"
+                android:layout_gravity="right"
+                android:layout_marginRight="10dp"
+                android:layout_weight="0.3" />
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:text="현재위치"
+                    android:id="@+id/btn_curr"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="0.5" />
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:text="-"
+                    android:id="@+id/btn_saved_location1"
+                    android:layout_weight="0.5"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:text="-"
+                    android:id="@+id/btn_saved_location2"
+                    android:layout_weight="0.5"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp" />
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:text="-"
+                    android:id="@+id/btn_saved_location3"
+                    android:layout_weight="0.5"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp" />
             </LinearLayout>
 
         </LinearLayout>
@@ -153,11 +208,11 @@
                 android:layout_weight="0.77" >
 
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
                     android:id="@+id/image_state_khai"
-                    android:layout_marginStart="10dp"
-                    android:src="@drawable/alert_bad"
+                    android:layout_marginStart="30dp"
+                    android:src="@drawable/statebutton_bad"
                     android:layout_alignParentTop="true"
                     android:layout_alignParentStart="true" />
 
@@ -167,7 +222,7 @@
                     android:textAppearance="?android:attr/textAppearanceSmall"
                     android:text="@string/microgram"
                     android:id="@+id/textView17"
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginLeft="20dp"
                     android:textSize="10dip"
                     android:textStyle="italic"
 
