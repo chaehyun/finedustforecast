@@ -13,10 +13,13 @@
 
     -->
 
+
+
     <ScrollView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/scrollView2" >
+        android:id="@+id/scrollView2"
+        android:layout_weight="1.83">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -24,16 +27,11 @@
 
 
 
-        <include
-            android:id="@+id/GetStationLayout"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            layout="@layout/station_info"
-            />
+
 
         <include
             android:id="@+id/GeneralAirConditionLayout"
-            android:layout_below="@+id/GetStationLayout"
+
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="10dp"
             android:layout_width="fill_parent"
@@ -80,20 +78,17 @@
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAlignment="center"
-            android:text="@string/pageA"
+        <include
+            android:id="@+id/GetStationLayout"
             android:layout_below="@+id/imageState_All"
-            android:layout_marginTop="20dp"
-            android:layout_gravity="center_horizontal"
-            android:gravity="center"
-            android:layout_marginBottom="20dp"
-            android:layout_centerHorizontal="true" />
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            layout="@layout/station_info"
+            />
 
     </RelativeLayout>
     </ScrollView>
+
 
 
 </LinearLayout>

@@ -2,9 +2,11 @@ package ch.test_viewpager.view;
 
 
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.location.LocationManager;
 import android.provider.Settings;
 import android.support.v4.app.FragmentActivity;
@@ -19,6 +21,9 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Toast;
+
+import com.tsengvn.typekit.Typekit;
+import com.tsengvn.typekit.TypekitContextWrapper;
 
 import ch.test_viewpager.R;
 import ch.test_viewpager.view.custom.MyViewPagerAdapter;
@@ -40,6 +45,12 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //Font_Setting
+        Typekit.getInstance().
+                addNormal(Typekit.createFromAsset(this, "BMJUA_ttf.ttf"))
+                .addBold(Typekit.createFromAsset(this, "BMDOHYEON_ttf.ttf"));
+
+
         //Check if GPS is ON mode or not
         //GPS should be ON to get Coordinates data
 
@@ -54,9 +65,12 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
         btn[2] = (Button)findViewById(R.id.btn_c);
         btn[3] = (Button)findViewById(R.id.btn_d);
 
+        Typeface font = Typeface.createFromAsset(getAssets(), "BMJUA_ttf.ttf");
+
         for(int i = 0; i < btn.length; i++)
         {
             btn[i].setOnClickListener(this);
+            btn[i].setTypeface(font);
         }
 
         //viewPager
@@ -213,4 +227,8 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
         startActivity(gpsOptionsIntent);
     }
 
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(TypekitContextWrapper.wrap(newBase));
+    }
 }

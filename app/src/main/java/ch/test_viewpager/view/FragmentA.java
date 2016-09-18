@@ -734,22 +734,22 @@ public class FragmentA extends Fragment implements View.OnClickListener, GoogleA
                         tv = (TextView) getView().findViewById(R.id.tv_state_1);
                         if(value >= 0 && value <= 50) {     //좋음으로 세팅
                             resource = ResourcesCompat.getDrawable(getResources(), R.drawable.statebutton_best, null);
-                            tv_data_hour[0].setTextColor(Color.BLUE);
+                            tv_data_hour[0].setTextColor(Color.rgb(0, 150, 250));
                             tv.setText("오늘 통합대기환경지수는 좋음입니다.");
                         }
                         else if(value <= 100) {     //보통으로 세팅
                             resource = ResourcesCompat.getDrawable(getResources(), R.drawable.statebutton_good, null);
-                            tv_data_hour[0].setTextColor(Color.GREEN);
+                            tv_data_hour[0].setTextColor(Color.rgb(120,190, 80));
                             tv.setText("오늘 통합대기환경지수는 보통입니다.");
                         }
                         else if(value <= 250) {
                             resource = ResourcesCompat.getDrawable(getResources(), R.drawable.statebutton_bad, null);
-                            tv_data_hour[0].setTextColor(Color.YELLOW);
+                            tv_data_hour[0].setTextColor(Color.rgb(255,220,80));
                             tv.setText("오늘 통합대기환경지수는 나쁨입니다.");
                         }
                         else {
                             resource = ResourcesCompat.getDrawable(getResources(), R.drawable.statebutton_verybad, null);
-                            tv_data_hour[0].setTextColor(Color.RED);
+                            tv_data_hour[0].setTextColor(Color.rgb(255,80,80));
                             tv.setText("오늘 통합대기환경지수는 심각입니다.");
                         }
                         img.setImageDrawable(resource);
@@ -760,26 +760,26 @@ public class FragmentA extends Fragment implements View.OnClickListener, GoogleA
                         tv = (TextView) getView().findViewById(R.id.tv_state_2);
                         if(value >= 0 && value <= 30) {     //좋음으로 세팅
                             resource = ResourcesCompat.getDrawable(getResources(), R.drawable.statebutton_best, null);
-                            tv_data_hour[1].setTextColor(Color.BLUE);
-                            tv_data_24hour[1].setTextColor(Color.BLUE);
+                            tv_data_hour[1].setTextColor(Color.rgb(0, 150, 250));
+                            tv_data_24hour[1].setTextColor(Color.rgb(0, 150, 250));
                             tv.setText("오늘 미세먼지농도는 좋음입니다.");
                         }
                         else if(value <= 80) {     //보통으로 세팅
                             resource = ResourcesCompat.getDrawable(getResources(), R.drawable.statebutton_good, null);
-                            tv_data_hour[1].setTextColor(Color.GREEN);
-                            tv_data_24hour[1].setTextColor(Color.GREEN);
+                            tv_data_hour[1].setTextColor(Color.rgb(120,190, 80));
+                            tv_data_24hour[1].setTextColor(Color.rgb(120,190, 80));
                             tv.setText("오늘 미세먼지농도는 보통입니다.");
                         }
                         else if(value <= 150) {
                             resource = ResourcesCompat.getDrawable(getResources(), R.drawable.statebutton_bad, null);
-                            tv_data_hour[1].setTextColor(Color.YELLOW);
-                            tv_data_24hour[1].setTextColor(Color.YELLOW);
+                            tv_data_hour[1].setTextColor(Color.rgb(255,220,80));
+                            tv_data_24hour[1].setTextColor(Color.rgb(255,220,80));
                             tv.setText("오늘 미세먼지농도는 나쁨입니다.");
                         }
                         else {
                             resource = ResourcesCompat.getDrawable(getResources(), R.drawable.statebutton_verybad, null);
-                            tv_data_hour[1].setTextColor(Color.RED);
-                            tv_data_24hour[1].setTextColor(Color.RED);
+                            tv_data_hour[1].setTextColor(Color.rgb(255,80,80));
+                            tv_data_24hour[1].setTextColor(Color.rgb(255,80,80));
                             tv.setText("오늘 미세먼지농도는 심각입니다.");
                         }
                         img.setImageDrawable(resource);
@@ -790,26 +790,26 @@ public class FragmentA extends Fragment implements View.OnClickListener, GoogleA
                         tv = (TextView) getView().findViewById(R.id.tv_state_3);
                         if(value >= 0 && value <= 15) {     //좋음으로 세팅
                             resource = ResourcesCompat.getDrawable(getResources(), R.drawable.statebutton_best, null);
-                            tv_data_hour[2].setTextColor(Color.BLUE);
-                            tv_data_24hour[2].setTextColor(Color.BLUE);
+                            tv_data_hour[2].setTextColor(Color.rgb(0, 150, 250));
+                            tv_data_24hour[2].setTextColor(Color.rgb(0, 150, 250));
                             tv.setText("초미세먼지농도는 좋음입니다.");
                         }
                         else if(value <= 50) {     //보통으로 세팅
                             resource = ResourcesCompat.getDrawable(getResources(), R.drawable.statebutton_good, null);
-                            tv_data_hour[2].setTextColor(Color.GREEN);
-                            tv_data_24hour[2].setTextColor(Color.GREEN);
+                            tv_data_hour[2].setTextColor(Color.rgb(120,190, 80));
+                            tv_data_24hour[2].setTextColor(Color.rgb(120,190, 80));
                             tv.setText("초미세먼지농도는 보통입니다.");
                         }
                         else if(value <= 100) {
                             resource = ResourcesCompat.getDrawable(getResources(), R.drawable.statebutton_bad, null);
-                            tv_data_hour[2].setTextColor(Color.YELLOW);
-                            tv_data_24hour[2].setTextColor(Color.YELLOW);
+                            tv_data_hour[2].setTextColor(Color.rgb(255,220,80));
+                            tv_data_24hour[2].setTextColor(Color.rgb(255,220,80));
                             tv.setText("초미세먼지농도는 나쁨입니다.");
                         }
                         else {
                             resource = ResourcesCompat.getDrawable(getResources(), R.drawable.statebutton_verybad, null);
-                            tv_data_hour[2].setTextColor(Color.RED);
-                            tv_data_24hour[2].setTextColor(Color.RED);
+                            tv_data_hour[2].setTextColor(Color.rgb(255,80,80));
+                            tv_data_24hour[2].setTextColor(Color.rgb(255,80,80));
                             tv.setText("초미세먼지농도는 심각입니다.");
                         }
                         img.setImageDrawable(resource);
@@ -820,19 +820,19 @@ public class FragmentA extends Fragment implements View.OnClickListener, GoogleA
                         tv = (TextView) getView().findViewById(R.id.tv_degree_o3);
                         if(value >= 0 && value <= 0.03) {     //좋음으로 세팅
                             resource = ResourcesCompat.getDrawable(getResources(), R.drawable.statebutton_best_square, null);
-                            tv.setTextColor(Color.BLUE);
+                            tv.setTextColor(Color.rgb(0, 150, 250));
                         }
                         else if(value <= 0.09) {     //보통으로 세팅
                             resource = ResourcesCompat.getDrawable(getResources(), R.drawable.statebutton_good_square, null);
-                            tv.setTextColor(Color.GREEN);
+                            tv.setTextColor(Color.rgb(120,190, 80));
                         }
                         else if(value <= 0.15) {
                             resource = ResourcesCompat.getDrawable(getResources(), R.drawable.statebutton_bad_square, null);
-                            tv.setTextColor(Color.YELLOW);
+                            tv.setTextColor(Color.rgb(255,220,80));
                         }
                         else {
                             resource = ResourcesCompat.getDrawable(getResources(), R.drawable.statebutton_verybad_square, null);
-                            tv.setTextColor(Color.RED);
+                            tv.setTextColor(Color.rgb(255,80,80));
                         }
 
                         tv.setText(String.valueOf(value));
@@ -845,19 +845,19 @@ public class FragmentA extends Fragment implements View.OnClickListener, GoogleA
                         tv = (TextView) getView().findViewById(R.id.tv_degree_no2);
                         if(value >= 0 && value <= 0.03) {     //좋음으로 세팅
                             resource = ResourcesCompat.getDrawable(getResources(), R.drawable.statebutton_best_square, null);
-                            tv.setTextColor(Color.BLUE);
+                            tv.setTextColor(Color.rgb(0, 150, 250));
                         }
                         else if(value <= 0.06) {     //보통으로 세팅
                             resource = ResourcesCompat.getDrawable(getResources(), R.drawable.statebutton_good_square, null);
-                            tv.setTextColor(Color.GREEN);
+                            tv.setTextColor(Color.rgb(120,190, 80));
                         }
                         else if(value <= 0.2) {
                             resource = ResourcesCompat.getDrawable(getResources(), R.drawable.statebutton_bad_square, null);
-                            tv.setTextColor(Color.YELLOW);
+                            tv.setTextColor(Color.rgb(255,220,80));
                         }
                         else {
                             resource = ResourcesCompat.getDrawable(getResources(), R.drawable.statebutton_verybad_square, null);
-                            tv.setTextColor(Color.RED);
+                            tv.setTextColor(Color.rgb(255,80,80));
                         }
 
                         tv.setText(String.valueOf(value));
@@ -868,19 +868,19 @@ public class FragmentA extends Fragment implements View.OnClickListener, GoogleA
                         tv = (TextView) getView().findViewById(R.id.tv_degree_co);
                         if(value >= 0 && value <= 2.0) {     //좋음으로 세팅
                             resource = ResourcesCompat.getDrawable(getResources(), R.drawable.statebutton_best_square, null);
-                            tv.setTextColor(Color.BLUE);
+                            tv.setTextColor(Color.rgb(0, 150, 250));
                         }
                         else if(value <= 9.0) {     //보통으로 세팅
                             resource = ResourcesCompat.getDrawable(getResources(), R.drawable.statebutton_good_square, null);
-                            tv.setTextColor(Color.GREEN);
+                            tv.setTextColor(Color.rgb(120,190, 80));
                         }
                         else if(value <= 15.0) {
                             resource = ResourcesCompat.getDrawable(getResources(), R.drawable.statebutton_bad_square, null);
-                            tv.setTextColor(Color.YELLOW);
+                            tv.setTextColor(Color.rgb(255,220,80));
                         }
                         else {
                             resource = ResourcesCompat.getDrawable(getResources(), R.drawable.statebutton_verybad_square, null);
-                            tv.setTextColor(Color.RED);
+                            tv.setTextColor(Color.rgb(255,80,80));
                         }
 
                         tv.setText(String.valueOf(value));
@@ -891,19 +891,19 @@ public class FragmentA extends Fragment implements View.OnClickListener, GoogleA
                         tv = (TextView) getView().findViewById(R.id.tv_degree_so2);
                         if(value >= 0 && value <= 0.02) {     //좋음으로 세팅
                             resource = ResourcesCompat.getDrawable(getResources(), R.drawable.statebutton_best_square, null);
-                            tv.setTextColor(Color.BLUE);
+                            tv.setTextColor(Color.rgb(0, 150, 250));
                         }
                         else if(value <= 0.05) {     //보통으로 세팅
                             resource = ResourcesCompat.getDrawable(getResources(), R.drawable.statebutton_good_square, null);
-                            tv.setTextColor(Color.GREEN);
+                            tv.setTextColor(Color.rgb(120,190, 80));
                         }
                         else if(value <= 0.15) {
                             resource = ResourcesCompat.getDrawable(getResources(), R.drawable.statebutton_bad_square, null);
-                            tv.setTextColor(Color.YELLOW);
+                            tv.setTextColor(Color.rgb(255,220,80));
                         }
                         else {
                             resource = ResourcesCompat.getDrawable(getResources(), R.drawable.statebutton_verybad_square, null);
-                            tv.setTextColor(Color.RED);
+                            tv.setTextColor(Color.rgb(255,80,80));
                         }
 
                         tv.setText(String.valueOf(value));
